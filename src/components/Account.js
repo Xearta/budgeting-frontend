@@ -1,27 +1,50 @@
-import React from 'react';
-import TransactionsContainer from '../containers/TransactionsContainer';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { editAccount } from '../actions/editAccount';
 import { deleteAccount } from '../actions/deleteAccount';
 
-const Account = props => {
-  // let account = props.accounts[props.match.params.id - 1];
-  // eslint-disable-next-line
-  let account = props.accounts.filter(account => account.id == props.match.params.id)[0];
-
-  const handleDelete = account => {
-    props.deleteAccount(account);
+class Account extends Component {
+  state = {
+    id: this.props.account.id,
+    name: this.props.account.name,
+    balance: this.props.account.balance,
   };
 
-  return (
-    <div>
-      <h2>
-        {account ? account.name : 'Account Loading...'} - ${account ? account.balance : null}
-      </h2>
-      <TransactionsContainer account={account} />
-      <hr />
-      <button onClick={() => handleDelete(account)}>Delete Account</button>
-    </div>
-  );
-};
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
 
-export default connect(null, { deleteAccount })(Account);
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.editAccount(this.state);
+    this.setState({
+      id: this.props.account.id,
+      name: this.props.account.name,
+      balance: this.props.account.balance,
+    });
+  };
+
+  handleDelete = () => {
+    this.props.deleteAccount(this.state);
+  };
+
+  render() {
+    const { id, name, balance } = this.props.account;
+    return (
+      <div>
+        <Link to={`/accounts/${id}`}>
+          {name} - ${balance}
+        </Link>
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' placeholder={balance} name='balance' onChange={this.handleChange} />
+        </form>
+        <button onClick={this.handleDelete}>Delete Account</button>
+      </div>
+    );
+  }
+}
+
+export default connect(null, { editAccount, deleteAccount })(Account);
