@@ -46,6 +46,20 @@ export default (state = { accounts: [], loading: false }, action) => {
         accounts: accounts,
       };
 
+    // Delete Transcation
+    case 'DELETE_TRANSACTION':
+      let accountsTwo = state.accounts.map(account => {
+        if (account.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return account;
+        }
+      });
+      return {
+        ...state,
+        accounts: accountsTwo,
+      };
+
     // Default State
     default:
       return state;

@@ -10,6 +10,12 @@ export const addTransaction = (transaction, accountId) => {
       body: JSON.stringify(transaction),
     })
       .then(res => res.json())
-      .then(account => dispatch({ type: 'TRANSACTION_ADDED', payload: account }));
+      .then(account => {
+        if (account.error) {
+          alert(account.error);
+        } else {
+          dispatch({ type: 'TRANSACTION_ADDED', payload: account });
+        }
+      });
   };
 };
