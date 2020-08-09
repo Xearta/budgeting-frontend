@@ -10,6 +10,7 @@ const Accounts = props => {
 
   return (
     <div>
+      <h2>Accounts:</h2>
       <ul>{props.loading ? <h3>Loading...</h3> : accounts}</ul>
     </div>
   );

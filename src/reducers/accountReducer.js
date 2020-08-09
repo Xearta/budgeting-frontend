@@ -26,6 +26,26 @@ export default (state = { accounts: [], loading: false }, action) => {
         loading: false,
       };
 
+    // Add Transaction
+    case 'ADDING_TRANSACTION':
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case 'TRANSACTION_ADDED':
+      let accounts = state.accounts.map(account => {
+        if (account.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return account;
+        }
+      });
+      return {
+        ...state,
+        accounts: accounts,
+      };
+
     // Default State
     default:
       return state;
