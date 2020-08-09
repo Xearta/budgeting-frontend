@@ -15,7 +15,7 @@ const AccountView = props => {
   return (
     <div>
       <h2>
-        {account ? account.name : 'Account Loading...'} - ${account ? account.balance : null}
+        {account ? account.name : 'Account Loading...'} - ${account ? account.planned : null}
       </h2>
       <TransactionsContainer account={account} />
       <hr />

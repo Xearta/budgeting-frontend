@@ -4,7 +4,7 @@ import { addTransaction } from '../actions/addTransaction';
 
 class TransactionForm extends Component {
   state = {
-    typeOfTransaction: 'deposit',
+    typeOfTransaction: 'expense',
     amount: '',
   };
 
@@ -18,7 +18,7 @@ class TransactionForm extends Component {
     event.preventDefault();
     this.props.addTransaction(this.state, this.props.account.id);
     this.setState({
-      typeOfTransaction: 'deposit',
+      typeOfTransaction: 'expense',
       amount: '',
     });
   };
@@ -30,8 +30,8 @@ class TransactionForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>Transaction Type: </label>
           <select name='typeOfTransaction' value={this.state.typeOfTransaction} onChange={this.handleChange}>
-            <option>deposit</option>
-            <option>withdraw</option>
+            <option>income</option>
+            <option>expense</option>
           </select>
           <br />
           <label>Transaction Amount: </label>

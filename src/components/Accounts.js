@@ -11,17 +11,17 @@ const Accounts = props => {
   props.accounts.map(account => {
     if (account.typeOfAccount === 'Income') {
       incomeAccounts.push(account);
-      budgetRemaining += account.balance;
+      budgetRemaining += account.planned;
     } else if (account.typeOfAccount === 'Expense') {
       expenseAccounts.push(account);
-      budgetRemaining -= account.balance;
+      budgetRemaining -= account.planned;
     }
   });
 
   const addIncomeAccount = () => {
     const account = {
       name: `Income ${incomeAccounts.length + 1}`,
-      balance: 0,
+      planned: 0,
       typeOfAccount: 'Income',
     };
     props.addAccount(account);
@@ -30,7 +30,7 @@ const Accounts = props => {
   const addExpenseAccount = () => {
     const account = {
       name: 'Label',
-      balance: 0,
+      planned: 0,
       typeOfAccount: 'Expense',
     };
     props.addAccount(account);

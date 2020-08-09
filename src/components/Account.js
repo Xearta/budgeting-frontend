@@ -8,7 +8,10 @@ class Account extends Component {
   state = {
     id: this.props.account.id,
     name: this.props.account.name,
-    balance: this.props.account.balance,
+    planned: this.props.account.planned,
+    spent: this.props.account.spent,
+    remaining: this.props.account.remaining,
+    available: this.props.account.available,
   };
 
   handleChange = event => {
@@ -19,12 +22,10 @@ class Account extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.editAccount(this.state);
     this.setState({
-      id: this.props.account.id,
-      name: this.props.account.name,
-      balance: this.props.account.balance,
+      remaining: this.state.planned - this.state.spent,
     });
+    this.props.editAccount(this.state);
   };
 
   handleDelete = () => {
@@ -32,16 +33,31 @@ class Account extends Component {
   };
 
   render() {
-    const { id, name, balance } = this.props.account;
+    const { id, name, planned, spent, remaining, available } = this.state;
     return (
       <div>
-        <Link to={`/accounts/${id}`}>
-          {name} - ${balance}
-        </Link>
+        <Link to={`/accounts/${id}`}>Account Name: {name}</Link>
+        <br />
+        Planned Amount: ${planned}
+        <br />
+        Spent: ${spent}
+        <br />
+        Remaining Amount: ${remaining}
+        <br />
+        Available: ${available}
+        <br />
         <form onSubmit={this.handleSubmit}>
-          <input type='text' placeholder={balance} name='balance' onChange={this.handleChange} />
+          <label>Name:</label>
+          <input type='text' value={name} name='name' onChange={this.handleChange} />
+        </form>
+        <form onSubmit={this.handleSubmit}>
+          <label>Budget Amount:</label>
+          <input type='text' value={planned} name='planned' onChange={this.handleChange} />
         </form>
         <button onClick={this.handleDelete}>Delete Account</button>
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

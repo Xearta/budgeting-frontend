@@ -5,7 +5,7 @@ import { addAccount } from '../actions/addAccount';
 class AccountForm extends React.Component {
   state = {
     name: '',
-    balance: '',
+    planned: '',
     typeOfAccount: 'Income',
   };
 
@@ -20,7 +20,7 @@ class AccountForm extends React.Component {
     this.props.addAccount(this.state);
     this.setState({
       name: '',
-      balance: '',
+      planned: '',
       typeOfAccount: 'Income',
     });
   };
@@ -32,12 +32,12 @@ class AccountForm extends React.Component {
           <label>Checking Account Name: </label>
           <input type='text' placeholder='Name' value={this.state.name} name='name' onChange={this.handleChange} />
           <br />
-          <label>Checking Account Balance: </label>
+          <label>Checking Account planned: </label>
           <input
             type='text'
-            placeholder='Balance'
-            value={this.state.balance}
-            name='balance'
+            placeholder='planned'
+            value={this.state.planned}
+            name='planned'
             onChange={this.handleChange}
           />
           <br />
