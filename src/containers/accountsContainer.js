@@ -13,7 +13,7 @@ class accountsContainer extends Component {
     return (
       <div>
         <AccountForm />
-        <Accounts accounts={this.props.accounts} />
+        <Accounts loading={this.props.loading} accounts={this.props.accounts} />
       </div>
     );
   }

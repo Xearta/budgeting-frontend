@@ -1,13 +1,15 @@
 import React from 'react';
 
 const Accounts = props => {
+  const accounts = props.accounts.map(account => (
+    <li key={account.id}>
+      {account.name} - ${account.balance}
+    </li>
+  ));
+
   return (
     <div>
-      {props.accounts.map(account => (
-        <li key={account.id}>
-          {account.name} - ${account.balance}
-        </li>
-      ))}
+      <ul>{props.loading ? <h3>Loading.....</h3> : accounts}</ul>
     </div>
   );
 };
