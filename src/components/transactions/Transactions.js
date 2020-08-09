@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteTransaction } from '../actions/deleteTransaction';
+import { deleteTransaction } from '../../actions/deleteTransaction';
 
 const Transactions = props => {
   const handleDelete = transaction => {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { editAccount } from '../actions/editAccount';
-import { deleteAccount } from '../actions/deleteAccount';
+import { editAccount } from '../../actions/editAccount';
+import { deleteAccount } from '../../actions/deleteAccount';
 
 class Account extends Component {
   state = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTransaction } from '../actions/addTransaction';
+import { addTransaction } from '../../actions/addTransaction';
 
 class TransactionForm extends Component {
   state = {

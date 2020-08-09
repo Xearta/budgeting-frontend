@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addAccount } from '../actions/addAccount';
+import { addAccount } from '../../actions/addAccount';
 
 class AccountForm extends React.Component {
   state = {

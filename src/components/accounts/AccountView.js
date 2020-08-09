@@ -1,7 +1,7 @@
 import React from 'react';
-import TransactionsContainer from '../containers/TransactionsContainer';
+import TransactionsContainer from '../../containers/TransactionsContainer';
 import { connect } from 'react-redux';
-import { deleteAccount } from '../actions/deleteAccount';
+import { deleteAccount } from '../../actions/deleteAccount';
 
 const AccountView = props => {
   // let account = props.accounts[props.match.params.id - 1];

@@ -1,6 +1,6 @@
 import React from 'react';
 import Account from './Account';
-import { addAccount } from '../actions/addAccount';
+import { addAccount } from '../../actions/addAccount';
 import { connect } from 'react-redux';
 
 const Accounts = props => {
