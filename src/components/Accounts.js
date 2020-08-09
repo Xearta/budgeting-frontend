@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { deleteAccount } from '../actions/deleteAccount';
-import { connect } from 'react-redux';
+import AccountView from './AccountView';
 
 const Accounts = props => {
   const incomeAccounts = [];
@@ -18,39 +16,20 @@ const Accounts = props => {
     }
   });
 
-  const incomes = incomeAccounts.map(account => (
-    <li key={account.id}>
-      <Link to={`/accounts/${account.id}`}>
-        {account.name} - ${account.balance}
-      </Link>{' '}
-      <button onClick={() => handleDelete(account)}>X</button>
-    </li>
-  ));
-
-  const expenses = expenseAccounts.map(account => (
-    <li key={account.id}>
-      <Link to={`/accounts/${account.id}`}>
-        {account.name} - ${account.balance}
-      </Link>
-    </li>
-  ));
-
-  const handleDelete = account => {
-    props.deleteAccount(account);
-  };
-
   return (
     <div>
       <h1>Budget Available: ${budgetRemaining}</h1>
       <h2>Incomes:</h2>
-      {incomes}
-      <Link to='/accounts/new'>Create a new Income account</Link>
+      {incomeAccounts.map(account => (
+        <AccountView key={account.id} account={account} />
+      ))}
       <hr />
       <h2>Expenses:</h2>
-      {expenses}
-      <Link to='/accounts/new'>Create a new Expense account</Link>
+      {expenseAccounts.map(account => (
+        <AccountView key={account.id} account={account} />
+      ))}
     </div>
   );
 };
 
-export default connect(null, { deleteAccount })(Accounts);
+export default Accounts;

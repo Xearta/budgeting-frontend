@@ -26,6 +26,20 @@ export default (state = { accounts: [], loading: false }, action) => {
         loading: false,
       };
 
+    // Edit Accounts
+    case 'EDIT_ACCOUNT':
+      let accountsThree = state.accounts.map(account => {
+        if (account.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return account;
+        }
+      });
+      return {
+        ...state,
+        accounts: accountsThree,
+      };
+
     // Delete Accounts
     case 'DELETE_ACCOUNT':
       return {
