@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import { fetchAccounts } from '../actions/fetchAccounts';
 import AccountForm from '../components/AccountForm';
 import Accounts from '../components/Accounts';
+import Account from '../components/Account';
 
 class accountsContainer extends Component {
   componentDidMount() {
@@ -12,8 +14,17 @@ class accountsContainer extends Component {
   render() {
     return (
       <div>
-        <AccountForm />
-        <Accounts loading={this.props.loading} accounts={this.props.accounts} />
+        <Switch>
+          <Route path='/accounts/new' component={AccountForm} />
+          <Route
+            path='/accounts/:id'
+            render={routerProps => <Account {...routerProps} accounts={this.props.accounts} />}
+          />
+          <Route
+            path='/accounts'
+            render={routerProps => <Accounts {...routerProps} accounts={this.props.accounts} />}
+          />
+        </Switch>
       </div>
     );
   }

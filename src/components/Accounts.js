@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Accounts = props => {
   const accounts = props.accounts.map(account => (
     <li key={account.id}>
-      {account.name} - ${account.balance}
+      <Link to={`/accounts/${account.id}`}>{account.name}</Link>
     </li>
   ));
 
   return (
     <div>
-      <ul>{props.loading ? <h3>Loading.....</h3> : accounts}</ul>
+      <ul>{props.loading ? <h3>Loading...</h3> : accounts}</ul>
     </div>
   );
 };
