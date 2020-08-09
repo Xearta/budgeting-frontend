@@ -1,4 +1,4 @@
-export default (state = { accounts: [], loading: false }, action) => {
+export default (state = { accounts: [], loading: false, budgets: 0 }, action) => {
   switch (action.type) {
     // Fetch Accounts
     case 'LOADING_ACCOUNTS':

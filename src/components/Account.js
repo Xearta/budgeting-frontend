@@ -36,13 +36,13 @@ class Account extends Component {
     const { id, name, planned, spent, remaining, available } = this.state;
     return (
       <div>
-        <Link to={`/accounts/${id}`}>Account Name: {name}</Link>
+        <Link to={`/accounts/${id}`}>{name}</Link>
         <br />
-        Planned Amount: ${planned}
+        Planned: ${planned}
         <br />
         Spent: ${spent}
         <br />
-        Remaining Amount: ${remaining}
+        Remaining: ${remaining}
         <br />
         Available: ${available}
         <br />
