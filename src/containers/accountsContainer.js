@@ -24,6 +24,7 @@ class accountsContainer extends Component {
             path='/accounts'
             render={routerProps => <Accounts {...routerProps} accounts={this.props.accounts} />}
           />
+          <Route path='/budget' render={routerProps => <Accounts {...routerProps} accounts={this.props.accounts} />} />
         </Switch>
       </div>
     );

@@ -26,6 +26,13 @@ export default (state = { accounts: [], loading: false }, action) => {
         loading: false,
       };
 
+    // Delete Accounts
+    case 'DELETE_ACCOUNT':
+      return {
+        ...state,
+        accounts: [...state.accounts.filter(account => account.id !== action.payload.id)],
+      };
+
     // Add Transaction
     case 'ADDING_TRANSACTION':
       return {

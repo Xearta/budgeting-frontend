@@ -6,6 +6,7 @@ class AccountForm extends React.Component {
   state = {
     name: '',
     balance: '',
+    typeOfAccount: 'Income',
   };
 
   handleChange = event => {
@@ -20,6 +21,7 @@ class AccountForm extends React.Component {
     this.setState({
       name: '',
       balance: '',
+      typeOfAccount: 'Income',
     });
   };
 
