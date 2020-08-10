@@ -18,14 +18,14 @@ class TransactionForm extends Component {
     event.preventDefault();
     this.props.addTransaction(this.state, this.props.account.id);
     this.setState({
-      typeOfTransaction: 'expense',
+      typeOfTransaction: 'income',
       amount: '',
     });
   };
 
   render() {
     return (
-      <div>
+      <div style={containerStyle}>
         <h2>Transaction Form</h2>
         <form onSubmit={this.handleSubmit}>
           <label>Transaction Type: </label>
@@ -43,5 +43,9 @@ class TransactionForm extends Component {
     );
   }
 }
+
+const containerStyle = {
+  marginTop: '50px',
+};
 
 export default connect(null, { addTransaction })(TransactionForm);

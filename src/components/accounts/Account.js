@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { editAccount } from '../../actions/editAccount';
 import { deleteAccount } from '../../actions/deleteAccount';
@@ -12,6 +11,7 @@ class Account extends Component {
     spent: this.props.account.spent,
     remaining: this.props.account.remaining,
     available: this.props.account.available,
+    transactions: this.props.account.transactions,
   };
 
   handleChange = event => {
@@ -33,34 +33,76 @@ class Account extends Component {
   };
 
   render() {
-    const { id, name, planned, spent, remaining, available } = this.state;
+    const { name, planned, spent, remaining } = this.state;
     return (
-      <div>
-        <Link to={`/accounts/${id}`}>{name}</Link>
-        <br />
-        Planned: ${planned}
-        <br />
-        Spent: ${spent}
-        <br />
-        Remaining: ${remaining}
-        <br />
-        Available: ${available}
-        <br />
-        <form onSubmit={this.handleSubmit}>
-          <label>Name:</label>
-          <input type='text' value={name} name='name' onChange={this.handleChange} />
-        </form>
-        <form onSubmit={this.handleSubmit}>
-          <label>Budget Amount:</label>
-          <input type='text' value={planned} name='planned' onChange={this.handleChange} />
-        </form>
-        <button onClick={this.handleDelete}>Delete Account</button>
-        <br />
-        <br />
-        <br />
+      <div style={containerStyle} onClick={() => this.props.seeAccount(this.state)}>
+        <div style={divStyle}>
+          <form onSubmit={this.handleSubmit}>
+            <label>Name:</label>
+            <input
+              type='text'
+              onMouseOver={inputHover}
+              onMouseLeave={inputLeave}
+              style={inputStyle}
+              value={name}
+              placeholder='Budget Item Label'
+              name='name'
+              onChange={this.handleChange}
+            />
+          </form>
+        </div>
+        <div style={divStyle}>
+          <form onSubmit={this.handleSubmit}>
+            <label>Planned:</label>
+            <input
+              type='text'
+              onMouseOver={inputHover}
+              onMouseLeave={inputLeave}
+              placeholder='$0.00'
+              style={inputStyle}
+              value={planned}
+              name='planned'
+              onChange={this.handleChange}
+            />
+          </form>
+        </div>
+        <div style={divStyle}>Spent: ${spent}</div>
+        <div style={divStyle}>Remaining: ${remaining}</div>
+        <div style={divStyle}>
+          <button onClick={this.handleDelete}>Delete Account</button>
+        </div>
       </div>
     );
   }
 }
+
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '10px',
+};
+
+const divStyle = {
+  background: '#fff',
+  color: '#69757a',
+  fontWeight: '600',
+  textAlign: 'center',
+  width: '80%',
+  padding: '10px',
+};
+
+const inputStyle = {
+  background: '#fff',
+  border: '1px solid transparent',
+  textAlign: 'center',
+};
+
+const inputHover = e => {
+  e.target.style.background = '#f5f7f8';
+};
+
+const inputLeave = e => {
+  e.target.style.background = '#fff';
+};
 
 export default connect(null, { editAccount, deleteAccount })(Account);

@@ -8,7 +8,7 @@ class TransactionsContainer extends Component {
       <div>
         <TransactionForm account={this.props.account} />
         <hr />
-        <Transactions transactions={this.props.account && this.props.account.transactions} />
+        <Transactions transactions={this.props.transactions} />
       </div>
     );
   }

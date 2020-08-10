@@ -1,4 +1,4 @@
-export default (state = { accounts: [], loading: false, budgets: 0 }, action) => {
+export default (state = { accounts: [], loading: false }, action) => {
   switch (action.type) {
     // Fetch Accounts
     case 'LOADING_ACCOUNTS':
@@ -24,6 +24,20 @@ export default (state = { accounts: [], loading: false, budgets: 0 }, action) =>
         ...state,
         accounts: [...state.accounts, action.payload],
         loading: false,
+      };
+
+    // View Account
+    case 'ACCOUNT_FOUND':
+      let accountsFour = state.accounts.map(account => {
+        if (account.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return account;
+        }
+      });
+      return {
+        ...state,
+        accounts: accountsFour,
       };
 
     // Edit Accounts
@@ -64,7 +78,7 @@ export default (state = { accounts: [], loading: false, budgets: 0 }, action) =>
       });
       return {
         ...state,
-        accounts: accounts,
+        accounts,
       };
 
     // Delete Transcation

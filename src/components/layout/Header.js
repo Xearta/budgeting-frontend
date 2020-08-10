@@ -25,6 +25,8 @@ const headerStyle = {
   color: '#fff',
   textAlign: 'center',
   padding: '10px',
+  top: 0,
+  position: 'sticky',
 };
 
 const linkStyle = {
